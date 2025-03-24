@@ -21,15 +21,19 @@ export class GameObject {
     public update(time: number) {
         this.ctx.lineWidth = this.strokeWidth;
 
-        this.velocity.x += this.acceleration.x * time;
-        this.velocity.y += this.acceleration.y * time;
+        this.velocity = this.velocity.add(this.acceleration.multiplyScalar(time));
+        //this.velocity.x += this.acceleration.x * time;
+        //this.velocity.y += this.acceleration.y * time;
 
         let frictionMultiplier = this.friction > 1 ? 1 / this.friction : 1;
-        this.velocity.x *= frictionMultiplier;
-        this.velocity.y *= frictionMultiplier;
+        //this.velocity.x *= frictionMultiplier;
+        //this.velocity.y *= frictionMultiplier;
+
+        this.velocity = this.velocity.multiplyScalar(frictionMultiplier);
         
-        this.position.x += this.velocity.x * time;
-        this.position.y += this.velocity.y * time; 
+        //this.position.x += this.velocity.x * time;
+        //this.position.y += this.velocity.y * time; 
+        this.position = this.position.add(this.velocity.multiplyScalar(time));
 
         if(this.position.x < 0 && this.velocity.x < 0) {
             this.velocity.x *= -1;
