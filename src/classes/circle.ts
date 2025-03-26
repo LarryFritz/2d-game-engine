@@ -7,8 +7,8 @@ export class Circle extends GameObject {
 
     radius: number = 1;
 
-    public override update(time: number) {
-        super.update(time);
+    public override update(time: number, keysDown: string[]) {
+        super.update(time, keysDown);
         
         const centerX = this.position.x;
         const centerY = this.position.y;

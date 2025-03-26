@@ -9,8 +9,8 @@ export class Square extends GameObject {
     height: number = 1;
     lineWidth: number = 0;
 
-    public override update(time: number) {
-        super.update(time);
+    public override update(time: number, keysDown: string[]) {
+        super.update(time, keysDown);
         
         const centerX = this.position.x;
         const centerY = this.position.y;
