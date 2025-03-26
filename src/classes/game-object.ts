@@ -1,3 +1,4 @@
+import { GameState } from "./game-state";
 import { Vector2 } from "./vector2";
 
 export class GameObject {
@@ -20,14 +21,14 @@ export class GameObject {
     strokeStyle: string = 'black';
     strokeWidth: number = 1;
 
-    public update(time: number, keysDown: string[]) {
+    public update(state: GameState) {
         this.ctx.lineWidth = this.strokeWidth;
 
         if(this.inputHandler) {
-            this.inputHandler(keysDown, this);
+            this.inputHandler(state.keysDown, this);
         }
 
-        this.velocity = this.velocity.add(this.acceleration.multiplyScalar(time));
+        this.velocity = this.velocity.add(this.acceleration.multiplyScalar(state.deltaTime));
         //this.velocity.x += this.acceleration.x * time;
         //this.velocity.y += this.acceleration.y * time;
 
@@ -42,7 +43,7 @@ export class GameObject {
         
         //this.position.x += this.velocity.x * time;
         //this.position.y += this.velocity.y * time; 
-        this.position = this.position.add(this.velocity.multiplyScalar(time));
+        this.position = this.position.add(this.velocity.multiplyScalar(state.deltaTime));
 
         if(this.position.x < 0 && this.velocity.x < 0) {
             this.velocity.x *= -1;

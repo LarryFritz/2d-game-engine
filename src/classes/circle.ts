@@ -1,4 +1,5 @@
 import { GameObject } from "./game-object";
+import { GameState } from "./game-state";
 
 export class Circle extends GameObject {
     constructor() {
@@ -7,8 +8,8 @@ export class Circle extends GameObject {
 
     radius: number = 1;
 
-    public override update(time: number, keysDown: string[]) {
-        super.update(time, keysDown);
+    public override update(state: GameState) {
+        super.update(state);
         
         const centerX = this.position.x;
         const centerY = this.position.y;

@@ -1,4 +1,5 @@
 import { GameObject } from "./game-object";
+import { GameState } from "./game-state";
 
 export class Square extends GameObject {
     constructor() {
@@ -9,8 +10,8 @@ export class Square extends GameObject {
     height: number = 1;
     lineWidth: number = 0;
 
-    public override update(time: number, keysDown: string[]) {
-        super.update(time, keysDown);
+    public override update(state: GameState) {
+        super.update(state);
         
         const centerX = this.position.x;
         const centerY = this.position.y;

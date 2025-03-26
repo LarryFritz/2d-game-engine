@@ -24,10 +24,10 @@ export class Game {
 
     public render = () => { 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        let deltaTime = Date.now() - this.state.lastUpdateTime.getTime();
+        this.state.deltaTime = Date.now() - this.state.lastUpdateTime.getTime();
         
         for(let gameObj of this.state.gameObjects) {
-          gameObj.update(deltaTime, this.state.keysDown);
+          gameObj.update(this.state);
         }
       
         this.state.lastUpdateTime = new Date();
